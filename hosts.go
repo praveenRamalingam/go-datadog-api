@@ -56,28 +56,28 @@ func (client *Client) GetHostTotals() (*HostTotalsResp, error) {
 
 // QueryHosts defines response to GET /v1/hosts/.
 type HostSearchResp struct {
-	TotalReturned *int             `json:"total_returned"`
-	TotalMatching *int             `json:"total_matching"`
-	HostListEntry *[]HostListEntry `json:"host_list"`
+	TotalReturned int             `json:"total_returned"`
+	TotalMatching int             `json:"total_matching"`
+	HostListEntry []HostListEntry `json:"host_list"`
 }
 
 type HostListEntry struct {
-	LastReportedTime int             `json:"last_reported_time"`
-	Name             string             `json:"name"`
-	IsMuted          bool               `json:"is_muted"`
-	MuteTimeout      int                `json:"mute_timeout"`
-	Apps             []string           `json:"apps"`
-	TagsBySource     map[string]int     `json:"tags_by_source"`
-	Up               bool               `json:"up"`
-	Metrics          map[string]float32 `json:"metrics"`
-	Source           []string           `json:"sources"`
-	HostName         string             `json:"host_name"`
-	Id               int                `json:"id"`
-	Aliases          []string           `json:"aliases"`
+	LastReportedTime int                 `json:"last_reported_time"`
+	Name             string              `json:"name"`
+	IsMuted          bool                `json:"is_muted"`
+	MuteTimeout      int                 `json:"mute_timeout"`
+	Apps             []string            `json:"apps"`
+	TagsBySource     map[string][]string `json:"tags_by_source"`
+	Up               bool                `json:"up"`
+	Metrics          map[string]float32  `json:"metrics"`
+	Source           []string            `json:"sources"`
+	HostName         string              `json:"host_name"`
+	Id               int                 `json:"id"`
+	Aliases          []string            `json:"aliases"`
 }
 
 //Search among hosts live within the past 2 hours. Max 100 results at a time.
-func (client *Client) QueryHosts(filter, sort_field, sort_dir string, start, count, from int) (HostSearchResp, error){
+func (client *Client) QueryHosts(filter, sort_field, sort_dir string, start, count, from int) (HostSearchResp, error) {
 	// Since this is a GET request, we need to build a query string.
 	vals := url.Values{}
 
