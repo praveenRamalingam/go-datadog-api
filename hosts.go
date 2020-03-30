@@ -62,7 +62,7 @@ type HostSearchResp struct {
 }
 
 type HostListEntry struct {
-	LastReportedTime string             `json:"last_reported_time"`
+	LastReportedTime int             `json:"last_reported_time"`
 	Name             string             `json:"name"`
 	IsMuted          bool               `json:"is_muted"`
 	MuteTimeout      int                `json:"mute_timeout"`
